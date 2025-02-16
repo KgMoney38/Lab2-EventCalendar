@@ -1,0 +1,2 @@
+public class EventCalendarTest {
+}
