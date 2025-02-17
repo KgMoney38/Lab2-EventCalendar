@@ -12,6 +12,7 @@ public class AddEventModal extends JDialog
 
         JTextField nameField = new JTextField();
         JTextField locationField = new JTextField();
+        JTextField durationField = new JTextField();
         JCheckBox isMeetingBox = new JCheckBox("Meeting?");
         JCheckBox isHolidayBox = new JCheckBox("Holiday (All Day Event)?");
 
@@ -50,6 +51,8 @@ public class AddEventModal extends JDialog
         add(nameField);
         add(new JLabel("Location (if meeting):"));
         add(locationField);
+        add (new JLabel("Duration in minutes (if meeting):"));
+        add(durationField);
         add(new JLabel ("Year:"));
         add(yearBox);
         add(new JLabel ("Month:"));
@@ -66,10 +69,16 @@ public class AddEventModal extends JDialog
 
         JButton addButton = new JButton("Add Event");
         addButton.addActionListener(e-> {
+            if(nameField.getText().isEmpty())
+            {
+                //Recommended by Intelli J
+                JOptionPane.showMessageDialog(this, "Please enter a name for the event", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             int year = Integer.parseInt((String)yearBox.getSelectedItem());
-            int month = Integer.parseInt((String)monthBox.getSelectedItem());
+            int month = monthBox.getSelectedIndex()+1;
             int day = Integer.parseInt((String)dayBox.getSelectedItem());
-            int hour = Integer.parseInt((String)hourBox.getSelectedItem());
+            int hour = hourBox.getSelectedIndex();
             int minute = Integer.parseInt((String)minuteBox.getSelectedItem());
 
             LocalDateTime dateTime = LocalDateTime.of(year, month, day, hour, minute);
@@ -80,9 +89,12 @@ public class AddEventModal extends JDialog
                 dateTime= dateTime.withHour(0).withMinute(0);
             }
 
+
+
             if (isMeetingBox.isSelected())
             {
-                parent.addEvent(new Meeting(nameField.getText(),dateTime,dateTime.plusHours(1), locationField.getText(),isHoliday));
+                double lengthMeeting= Double.parseDouble(durationField.getText());
+                parent.addEvent(new Meeting(nameField.getText(),dateTime,dateTime.plusMinutes((long)lengthMeeting), locationField.getText(),isHoliday));
             }
             else
             {

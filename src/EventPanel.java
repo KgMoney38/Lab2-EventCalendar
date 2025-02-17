@@ -46,10 +46,10 @@ public class EventPanel extends JPanel
             LocalDateTime now = LocalDateTime.now();
             long daysUntil = ChronoUnit.DAYS.between(now, event.getDateTime());
 
-            JLabel daysUntilLabel = new JLabel("Days until event: " + daysUntil);
+            JLabel daysUntilLabel = new JLabel("Full Days until event: " + daysUntil);
             JLabel dueSoon= new JLabel("SOON!");
             JLabel duePast= new JLabel("OVERDUE!!!");
-            JLabel dueEventually= new JLabel("You Have Time!");
+            JLabel dueEventually= new JLabel("You Have Time");
 
 
 
