@@ -23,34 +23,35 @@ public class Meeting extends Event implements Completable
     }
 
     @Override
-    public boolean isCompleted()
+    public boolean isComplete()
     {
-        return false;
+        return complete;
     }
 
-    public LocalDateTime getEndTime()
+
+    public LocalDateTime getEndDateTime()
     {
-        return this.endDateTime;
+        return endDateTime;
     }
 
     public Duration getDuration()
     {
-        return Duration.between(this.endDateTime, LocalDateTime.now());
+        return Duration.between(dateTime, endDateTime);
     }
 
     public String getLocation()
     {
-        return this.location;
+        return location;
     }
 
-    public void setEndTime(LocalDateTime end)
+    public void setEndDateTime(LocalDateTime end)
     {
         this.endDateTime = end;
     }
 
-    public void setLocation(String Location)
+    public void setLocation(String location)
     {
-        this.location = Location;
+        this.location = location;
     }
 
     @Override

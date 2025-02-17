@@ -18,7 +18,7 @@ class Deadline extends Event implements Completable
     }
 
     @Override
-    public boolean isCompleted()
+    public boolean isComplete()
     {
         return complete;
     }
