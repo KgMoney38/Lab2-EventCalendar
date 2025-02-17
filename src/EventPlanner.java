@@ -1,5 +1,5 @@
 import javax.swing.*;
-
+//PASSES EVENT TESTER
 public class EventPlanner
 {
     public static void main(String[] args)
