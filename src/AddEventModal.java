@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDateTime;
 
+//
 public class AddEventModal extends JDialog
 {
     public AddEventModal(EventListPanel parent)

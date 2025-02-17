@@ -1,5 +1,5 @@
 import javax.swing.*;
-//PASSES EVENT TESTER
+//Clear to delete first attempt add comment to everything to ensure git saves them ////
 public class EventPlanner
 {
     public static void main(String[] args)

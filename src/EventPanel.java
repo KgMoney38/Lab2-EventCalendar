@@ -3,6 +3,7 @@ import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
+//
 public class EventPanel extends JPanel
 {
         private Event event;
