@@ -20,7 +20,7 @@ public class EventListPanel extends JPanel
         add(new JScrollPane(displayPanel), BorderLayout.CENTER);
 
         JPanel controlPanel = new JPanel();
-        sortDropDown = new JComboBox<>(new String[]{"By Name", "By Date"});
+        sortDropDown = new JComboBox<>(new String[]{"None", "By Name", "By Date"});
         sortDropDown.addActionListener(e -> sortEvents());
         filterCompleted = new JCheckBox("Filter completed");
         filterCompleted.addActionListener(e -> updateDisplay());
@@ -59,12 +59,16 @@ public class EventListPanel extends JPanel
 
     public void sortEvents()
     {
-        if(sortDropDown.getSelectedIndex() == 0)
+        if(sortDropDown.getSelectedIndex() == 1)
         {
             events.sort((a,b) -> a.getName().compareToIgnoreCase(b.getName()));
-        }else
+        }else if (sortDropDown.getSelectedIndex() == 2)
         {
             Collections.sort(events);
+        }
+        else
+        {
+            //No sort
         }
         updateDisplay();
     }

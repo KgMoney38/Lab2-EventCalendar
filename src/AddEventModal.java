@@ -16,19 +16,22 @@ public class AddEventModal extends JDialog
         JCheckBox isHolidayBox = new JCheckBox("Holiday (All Day Event)?");
 
         String[] years = {"2025", "2026", "2027", "2028", "2029"};
-        String[] months = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
+        String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         String[] days = new String[31];
 
         for(int i = 1; i <= 31; i++) {
             days[i - 1] = String.valueOf(i);
         }
 
-        String[] hours = new String[24];
-        for(int i = 0; i < 24; i++)
-        {
-            hours[i]= String.valueOf(i);
-        }
-        String[] minutes = {"0", "15", "30", "45"};
+        //Generated this list of numbers online because its straight forward but a pain to type
+        String[] hours = new String[] {"12:00 AM", "1:00 AM", "2:00 AM", "3:00 AM", "4:00 AM", "5:00 AM", "6:00 AM", "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM",
+            "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM", "10:00 PM", "11:00 PM"};
+
+
+        //Generated this list of numbers online because its straight forward but a pain to type
+        String[] minutes = new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+                "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40",
+                "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"};
 
         JComboBox<String> yearBox = new JComboBox<>(years);
         JComboBox<String> monthBox = new JComboBox<>(months);

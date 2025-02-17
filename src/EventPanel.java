@@ -28,7 +28,7 @@ public class EventPanel extends JPanel
             }
 
             add(infoPanel, BorderLayout.CENTER);
-            updateUrgency();
+            updateUrgency(infoPanel);
 
             if (event instanceof Completable)
             {
@@ -41,22 +41,36 @@ public class EventPanel extends JPanel
             }
         }
 
-        public void updateUrgency()
+        public void updateUrgency(JPanel infoPanel)
         {
             LocalDateTime now = LocalDateTime.now();
             long daysUntil = ChronoUnit.DAYS.between(now, event.getDateTime());
 
+            JLabel daysUntilLabel = new JLabel("Days until event: " + daysUntil);
+            JLabel dueSoon= new JLabel("SOON!");
+            JLabel duePast= new JLabel("OVERDUE!!!");
+            JLabel dueEventually= new JLabel("You Have Time!");
+
+
+
             if(daysUntil < 0)
             {
                 setBackground(Color.red);
+                infoPanel.add(duePast);
+                infoPanel.add(daysUntilLabel);
             }
             else if (daysUntil <= 3)
             {
                 setBackground(Color.yellow);
+                infoPanel.add(dueSoon);
+                infoPanel.add(daysUntilLabel);
+
             }
             else
             {
                 setBackground(Color.green);
+                infoPanel.add(dueEventually);
+                infoPanel.add(daysUntilLabel);
             }
         }
 }
