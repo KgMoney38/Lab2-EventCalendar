@@ -10,7 +10,12 @@ public class Meeting extends Event implements Completable
 
     public Meeting(String name, LocalDateTime start, LocalDateTime end, String location)
     {
-        super(name,start);
+        this(name,start,end,location,false);
+    }
+
+    public Meeting(String name, LocalDateTime start, LocalDateTime end, String location, boolean isHoliday)
+    {
+        super(name,start, isHoliday);
         this.endDateTime = end;
         this.location = location;
         this.complete = false;

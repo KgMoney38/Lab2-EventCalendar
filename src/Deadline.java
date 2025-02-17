@@ -7,7 +7,11 @@ class Deadline extends Event implements Completable
 
     public Deadline(String name, LocalDateTime deadline)
     {
-        super(name, deadline);
+        this(name, deadline, false);
+    }
+    public Deadline(String name, LocalDateTime deadline, boolean isHoliday)
+    {
+        super(name, deadline, isHoliday);
         this.complete = false;
     }
 

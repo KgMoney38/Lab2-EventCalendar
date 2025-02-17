@@ -4,11 +4,13 @@ abstract class Event implements Comparable<Event>
 {
     protected String name;
     protected LocalDateTime dateTime;
+    protected boolean isHoliday;
 
-    public Event(String name, LocalDateTime dateTime)
+    public Event(String name, LocalDateTime dateTime, boolean isHoliday)
     {
         this.name = name;
         this.dateTime = dateTime;
+        this.isHoliday = isHoliday;
     }
 
     public abstract String getName();
@@ -26,6 +28,11 @@ abstract class Event implements Comparable<Event>
     public void setName(String name)
     {
         this.name = name;
+    }
+
+    public boolean isHoliday()
+    {
+        return isHoliday;
     }
 
     @Override
