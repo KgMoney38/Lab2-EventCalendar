@@ -47,7 +47,7 @@ public class EventPanel extends JPanel
             long daysUntil = ChronoUnit.DAYS.between(now, event.getDateTime());
 
             JLabel daysUntilLabel = new JLabel("Full Days until event: " + daysUntil);
-            JLabel dueSoon= new JLabel("SOON!");
+            JLabel dueSoon= new JLabel("SOON!");;
             JLabel duePast= new JLabel("OVERDUE!!!");
             JLabel dueEventually= new JLabel("You Have Time");
 
@@ -58,19 +58,22 @@ public class EventPanel extends JPanel
                 setBackground(Color.red);
                 infoPanel.add(duePast);
                 infoPanel.add(daysUntilLabel);
+                duePast.setForeground(Color.red);
             }
             else if (daysUntil <= 3)
             {
                 setBackground(Color.yellow);
                 infoPanel.add(dueSoon);
                 infoPanel.add(daysUntilLabel);
-
+                dueSoon.setForeground(Color.yellow);
             }
             else
             {
                 setBackground(Color.green);
                 infoPanel.add(dueEventually);
                 infoPanel.add(daysUntilLabel);
+                dueEventually.setForeground(Color.green);
+
             }
         }
 }
