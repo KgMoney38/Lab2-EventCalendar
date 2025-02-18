@@ -1,7 +1,8 @@
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Calendar;
-//
+//Few comments but mostly straight forward
+//File complete
 
 public class Meeting extends Event implements Completable
 {
@@ -11,17 +12,20 @@ public class Meeting extends Event implements Completable
 
     public Meeting(String name, LocalDateTime start, LocalDateTime end, String location)
     {
+        //Added isHoliday for the panel when creating an event
         this(name,start,end,location,false);
     }
 
     public Meeting(String name, LocalDateTime start, LocalDateTime end, String location, boolean isHoliday)
     {
+        //Super to call parent class constructor
         super(name,start, isHoliday);
         this.endDateTime = end;
         this.location = location;
         this.complete = false;
 
     }
+
     @Override
     public void complete()
     {

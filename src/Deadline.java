@@ -1,8 +1,10 @@
 import java.time.LocalDateTime;
-//
+
+//Thank God for Intelli J I only had to type like 2 sentences in this class. Again very straight forward no comments needed
+//File complete
+
 class Deadline extends Event implements Completable
 {
-    //Thank God for Intelli J I only had to type like 2 sentences in this class
 
     private boolean complete;
 

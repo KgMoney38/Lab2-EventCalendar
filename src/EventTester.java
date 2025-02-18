@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-//
+//No Comments needed this came from class folder
 //Completed event tester from our class file
 public class EventTester {
 

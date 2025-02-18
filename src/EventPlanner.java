@@ -1,7 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 
-//Clear to delete first attempt add comment to everything to ensure git saves them ////
+//Basic main like class file, no comments needed
+//File complete
 public class EventPlanner
 {
     public static void main(String[] args)

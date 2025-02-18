@@ -1,7 +1,12 @@
 import java.time.LocalDateTime;
-//
+
+//Dont forget abstract, had to come back and add it
+//Other than that this is all very straight forward I only typed like 8 lines, the rest came from Intelli J, no comments or notes needed
+//File Complete
+
 abstract class Event implements Comparable<Event>
 {
+
     protected String name;
     protected LocalDateTime dateTime;
     protected boolean isHoliday;
