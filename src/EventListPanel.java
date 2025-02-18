@@ -7,39 +7,41 @@ import java.util.Collections;
 
 public class EventListPanel extends JPanel
 {
+    private FilterDropDown filterDropDown;
     private ArrayList<Event> events;
     private JPanel displayPanel;
     private JComboBox<String> sortDropDown;
     private int currentFilter= 0;
 
-    public EventListPanel()
-    {
+    public EventListPanel() {
         events = new ArrayList<>();
         displayPanel = new JPanel();
         setLayout(new BorderLayout());
 
         displayPanel.setLayout(new BoxLayout(displayPanel, BoxLayout.Y_AXIS));
         add(new JScrollPane(displayPanel), BorderLayout.CENTER);
-
+        displayPanel.setBackground(Color.darkGray);
+        JLabel emptyLabel = new JLabel("No events found: GET TO PLANNING!");
+        emptyLabel.setForeground(Color.RED);
+        emptyLabel.setFont(new Font("Serif", Font.BOLD, 45));
+        displayPanel.add(emptyLabel);
         JPanel controlPanel = new JPanel();
 
         //Sort dropdown menu
         JLabel sortLabel = new JLabel("Sort by:");
-        String[] sortOptions= {"None", "By Ascending Name", "By Date", "By Descending Name"};
-        sortDropDown = new JComboBox<>(sortOptions );
+        String[] sortOptions = {"None", "By Ascending Name", "By Date", "By Descending Name"};
+        sortDropDown = new JComboBox<>(sortOptions);
         sortDropDown.addActionListener(e -> sortEvents());
 
         //Filter dropdown menu
         JLabel filterLabel = new JLabel("Filter By:");
-        String[] filterOptions= {"None", "Hide Completed", "Hide Deadlines", "Hide Meetings"};
-        JComboBox<String> filterDropdown = new JComboBox<>(filterOptions );
-        filterDropdown.addActionListener(e -> updateDisplay(filterDropdown.getSelectedIndex()));
+        filterDropDown= new FilterDropDown("Filter Options", this::updateDisplay);
 
         //Add to my controlPanel
         controlPanel.add(sortLabel);
         controlPanel.add(sortDropDown);
         controlPanel.add(filterLabel);
-        controlPanel.add(filterDropdown);
+        controlPanel.add(filterDropDown);
 
         JButton addButton= new JButton("Add Event");
         //Not really sure why I had to add "this" but it was the only way to get it to work properly research this issue
@@ -51,10 +53,10 @@ public class EventListPanel extends JPanel
     public void addEvent (Event event)
     {
         events.add(event);
-        updateDisplay(events.size());
+        updateDisplay();
     }
 
-    public void updateDisplay(int filterOption)
+    public void updateDisplay()
     {
         displayPanel.removeAll();
 
@@ -62,15 +64,15 @@ public class EventListPanel extends JPanel
         {
             boolean shouldDisplay= true;
 
-            if(currentFilter==1 && event instanceof Completable && ((Completable) event).isComplete())
+            if(filterDropDown.isCompletedFilter() && event instanceof Completable && ((Completable) event).isComplete())
             {
                 shouldDisplay= false;
             }
-            else if (currentFilter==2 && event instanceof Deadline)
+            else if (filterDropDown.isDeadlinesFiltered() && event instanceof Deadline)
             {
                 shouldDisplay= false;
             }
-            else if (currentFilter==3 && event instanceof Meeting)
+            else if (filterDropDown.isMeetingsFiltered() && event instanceof Meeting)
             {
                 shouldDisplay= false;
             }
@@ -105,6 +107,6 @@ public class EventListPanel extends JPanel
             Collections.sort(events);
 
         }
-        updateDisplay(currentFilter);
+        updateDisplay();
     }
 }

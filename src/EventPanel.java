@@ -8,14 +8,24 @@ public class EventPanel extends JPanel
 {
         private Event event;
         private JButton completeButton;
+        private JLabel completedLabel;
 
         public EventPanel(Event event) {
             this.event = event;
             setLayout(new BorderLayout());
             setBorder(BorderFactory.createTitledBorder(event.getName()));
+            setBackground(Color.DARK_GRAY);
 
             JPanel infoPanel = new JPanel(new GridLayout(4, 1));
+
             infoPanel.add(new JLabel("Date:" +event.getDateTime()));
+
+            infoPanel.setBackground(Color.lightGray);
+
+            //Label for completion status hide for now
+            completedLabel = new JLabel("->Completed<-");
+            completedLabel.setForeground(Color.BLUE);
+            completedLabel.setVisible(event instanceof Completable &&((Completable)event).isComplete());
 
             if (event instanceof Meeting)
             {
@@ -37,9 +47,11 @@ public class EventPanel extends JPanel
                 completeButton.addActionListener(e -> {
                     ((Completable) event).complete();
                     completeButton.setEnabled(false);
+                    completedLabel.setVisible(true);
                 });
                 add(completeButton, BorderLayout.SOUTH);
             }
+            add(completedLabel, BorderLayout.EAST);
         }
 
         public void updateUrgency(JPanel infoPanel)
@@ -49,7 +61,7 @@ public class EventPanel extends JPanel
 
             JLabel daysUntilLabel = new JLabel("Full Days until event: " + daysUntil);
             JLabel dueSoon= new JLabel("SOON!");;
-            JLabel duePast= new JLabel("OVERDUE!!!");
+            JLabel duePast= new JLabel("PAST!!!");
             JLabel dueEventually= new JLabel("You Have Time");
 
 
